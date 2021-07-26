@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Form, Button, Alert } from 'react-bootstrap';
-import './css/userlogin';
+import '../css/userlogin.css';
 import { createUser } from '../utils/API';
 import Auth from '../utils/auth';
 
@@ -52,12 +52,12 @@ const SignupForm = () => {
   return (
     <>
       {/* This is needed for the validation functionality above */}
-      <Form noValidate validated={validated} onSubmit={handleFormSubmit}>
+      <Form className="signup-top" noValidate validated={validated} onSubmit={handleFormSubmit}>
         {/* show alert if server response is bad */}
         <Alert dismissible onClose={() => setShowAlert(false)} show={showAlert} variant='danger'>
           Something went wrong with your signup!
         </Alert>
-        <Form.Group>
+        <Form.Group className="form">
           <Form.Label htmlFor='username'>Username</Form.Label>
           <Form.Control
             type='text'
