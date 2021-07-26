@@ -1,0 +1,17 @@
+
+header{
+    background-color: crimson;
+}
+
+/* .modal-open{ tarkets get the screen from index.html in public 
+    background-color: crimson;
+} */
+
+
+From.signup-top{
+    background-color: rgb(118, 141, 168);
+    box-shadow: coral, 2px;
+}
+.form{
+    color: chartreuse;
+}
