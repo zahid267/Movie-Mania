@@ -1,15 +1,16 @@
 import React from 'react';
 import { Carousel } from 'react-bootstrap';
+import '../css/homeview.css'
 
 const HomeView = () => {
 
 return (
 
-<Carousel>
+<Carousel className="viewed-imgs">
 
   <Carousel.Item interval={2000}>
     <img
-      className="d-block w-100"
+      className="d-block w-1000"
       src="holder.js/800x400?text=First slide&bg=373940"
       alt="First slide"
     />
