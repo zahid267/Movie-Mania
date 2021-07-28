@@ -53,69 +53,22 @@ const SearchBooks = () => {
     //console.log(data);
     const {Hits} = await response.json();
     console.log(Hits);
-    // .then((response) => {
-    //  const data = response.json();
-    //  const hits = data && data.hits ? data.hits : [];
-    //   console.log(data);
-    //  // console.log(data.Promise);
-    // })
-    // .catch(err => {
-    //   console.error(err);
+    
+const movieData = Hits.map((movie) => ({
+        movieId: movie.Id,
+        programType : movie.Source.ProgramType,
+        genres : movie.Source.Genres || '',
+        imageCount:movie.Source.ImageCount,
+        title: movie.Source.Title,
+        imageFilePath: movie.Source.FilePath || '',
+        sexuality:movie.Source.Sexuality || 0,
+        language : movie.Source.OriginalLanguage || 'English',
+        length : movie.Source.Length || 1,
+        releaseDate : movie.Source.OriginalReleaseDate
 
-const movieData = items.map((book) => ({
-        bookId: book.id,
-        authors: book.volumeInfo.authors || ['No author to display'],
-        title: book.volumeInfo.title,
-        description: book.volumeInfo.description,
-        image: book.volumeInfo.imageLinks?.thumbnail || '',
       }));
+  console.log(movieData);
 
-/*
-Id: "Episode/991669"
-Score: 27.816513
-Source:
-Created: "2017-03-26T12:22:36.1100000Z"
-Deleted: false
-EpisodeNumber: 41
-Id: "Episode/991669"
-ImageCount: 1
-Images: Array(1)
-0:
-FilePath: "ed1d929f7a0b42a67c4e9cc0d4767815"
-Height: 1080
-ImageType: "Photo"
-Modified: "2018-12-20T21:25:34.3370000Z"
-Official: false
-Sexuality: 1
-Tags: ["guitarist"]
-Violence: 2
-Width: 1920
-[[Prototype]]: Object
-length: 1
-[[Prototype]]: Array(0)
-Modified: "2018-02-01T05:26:25.3500000Z"
-OriginalReleaseDate: "2015-11-17T00:00:00.0000000Z"
-OriginalTitle: "Star Wars"
-OriginalTitle_completion: "star wars"
-ProgramType: "Episode"
-SeasonId: "Season/87384"
-SeasonNumber: 4
-ShowId: "Show/42645"
-TimeStamp: "2021-03-18T04:33:43.4818513Z"
-Title: "Star Wars"
-Title_completion: "star wars"
-VersionId: 752055423
-VideoCount: 0
-Year: 2015
-*/
-
-
-
-
-
-
-
-    // });
 
       return false;
 
