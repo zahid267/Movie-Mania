@@ -69,7 +69,6 @@ const movieData = Hits.map((movie) => ({
       }));
   console.log(movieData);
 
-
       return false;
 
 
