@@ -4,8 +4,9 @@ import SearchBooks from './pages/SearchBooks';
 import SavedBooks from './pages/SavedBooks';
 import Navbar from './components/Navbar';
 import HomeView from './pages/HomeView';
-import ContactMe from './components/ContactUs';
+
 import SearchesPage from './pages/SearchesPage';
+import BottomNav from './components/BottomNav';
 
 
 function App() {
@@ -18,7 +19,7 @@ function App() {
         <Switch>
           <SearchesPage/>
         </Switch>
-        
+        <BottomNav/>
       </>
     </Router>
   );
