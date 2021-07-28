@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Jumbotron, Container, Col, Form, Button, Card, CardColumns } from 'react-bootstrap';
+//var axios = require("axios").default;
+import axios from 'axios';
 import '../css/search.css'
 import Auth from '../utils/auth';
-import { saveBook, searchGoogleBooks } from '../utils/API';
+import { saveBook, searchMovies, searchMovieImages, searchGoogleBooks } from '../utils/API';
 import { saveBookIds, getSavedBookIds } from '../utils/localStorage';
 
 const SearchBooks = () => {
@@ -29,13 +31,56 @@ const SearchBooks = () => {
     }
 
     try {
-      const response = await searchGoogleBooks(searchInput);
+     // const response = await searchGoogleBooks(searchInput);
+
+      //const response = await searchMovies(searchInput);
+
+
+    // return fetch('https://ivaee-internet-video-archive-entertainment-v1.p.rapidapi.com/entertainment/search/?ProgramType=Movie&Includes=Descriptions,Images,Genres&StringDistance='+searchInput.length+'&Title='+searchInput, {
+    //   'method': 'GET',
+    //   'headers': {
+    //     'content-type': 'application/json',
+    //     'x-rapidapi-key': '36cdf6872fmsh4c920891e55aecdp1d76fdjsn61241435d1ec',
+    //     'x-rapidapi-host': 'ivaee-internet-video-archive-entertainment-v1.p.rapidapi.com'
+    //   }
+    // })
+    const response = await searchMovies(searchInput)
+
+    if (!response.ok) {
+      throw new Error('oh crap')
+    }
+    //const data = await response.json();
+    //console.log(data);
+    const {Hits} = await response.json();
+    console.log(Hits);
+    
+const movieData = Hits.map((movie) => ({
+        movieId: movie.Id,
+        programType : movie.Source.ProgramType,
+        genres : movie.Source.Genres || '',
+        imageCount:movie.Source.ImageCount,
+        title: movie.Source.Title,
+        imageFilePath: movie.Source.FilePath || '',
+        sexuality:movie.Source.Sexuality || 0,
+        language : movie.Source.OriginalLanguage || 'English',
+        length : movie.Source.Length || 1,
+        releaseDate : movie.Source.OriginalReleaseDate
+
+      }));
+  console.log(movieData);
+
+
+      return false;
+
 
       if (!response.ok) {
         throw new Error('something went wrong!');
       }
 
       const { items } = await response.json();
+
+      console.log(items);
+      return false;
 
       const bookData = items.map((book) => ({
         bookId: book.id,
