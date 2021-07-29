@@ -15,7 +15,7 @@ function App() {
       <>
         <Navbar />
        <HomeView/>
-       
+       <SearchBooks/>
         <Switch>
           <SearchesPage/>
         </Switch>

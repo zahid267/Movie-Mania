@@ -51,7 +51,7 @@ const SearchBooks = () => {
     }
     //const data = await response.json();
     //console.log(data);
-    const {Hits} = await response.json();
+    const { Hits } = await response.json();
     console.log(Hits);
     
 const movieData = Hits.map((movie) => ({
