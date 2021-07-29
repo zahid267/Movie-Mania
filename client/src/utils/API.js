@@ -55,9 +55,9 @@ export const deleteBook = (bookId, token) => {
 export const searchGoogleBooks = (query) => {
   return fetch(`https://www.googleapis.com/books/v1/volumes?q=${query}`);
 };
+
 export const searchMovies = (query) => {
-  //const subsKey = '36cdf6872fmsh4c920891e55aecdp1d76fdjsn61241435d1ec';   /// for https://ee.iva-api.com/api/entertainment/Search/? API
-  return fetch('https://ivaee-internet-video-archive-entertainment-v1.p.rapidapi.com/entertainment/search/?ProgramType=Movie&Includes=Descriptions,Images,Genres&StringDistance=0&Title='+query, {
+  return fetch('https://ivaee-internet-video-archive-entertainment-v1.p.rapidapi.com/entertainment/search/?ProgramTypes=Movie&Includes=Descriptions,Images,Genres&Title='+query, {
       'method': 'GET',
       'headers': {
         'content-type': 'application/json',
@@ -65,11 +65,9 @@ export const searchMovies = (query) => {
         'x-rapidapi-host': 'ivaee-internet-video-archive-entertainment-v1.p.rapidapi.com'
       }
     });
-  
 };
 
 export const searchMovieImages = (imagepath) => {
-  //const subsKey = '36cdf6872fmsh4c920891e55aecdp1d76fdjsn61241435d1ec';   /// for https://ee.iva-api.com/api/entertainment/Search/? API
   return fetch('https://ivaee-internet-video-archive-entertainment-v1.p.rapidapi.com/Images/'+imagepath+'/Redirect?Redirect=True', {
       'method': 'GET',
       'headers': {
@@ -78,5 +76,11 @@ export const searchMovieImages = (imagepath) => {
         'x-rapidapi-host': 'ivaee-internet-video-archive-entertainment-v1.p.rapidapi.com'
       }
     });
-  
 };
+/*  /// does not work
+export const searchMovies = (query) => {
+  return fetch(`http://www.omdbapi.com/?apikey=f3511f7c&type=movie&page=10&t=${query}`);
+};
+*/
+
+///// sample url  = http://www.omdbapi.com/?i=tt3896198&apikey=f3511f7c
