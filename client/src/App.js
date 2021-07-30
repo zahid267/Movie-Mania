@@ -19,8 +19,11 @@ function App() {
        <HomeView/>
        
         <Switch>
+
+
           <SearchMovies/>
          
+ main
         </Switch>
 
         
