@@ -2,15 +2,13 @@ import React from 'react';
 import { Card, Button, Container } from 'react-bootstrap';
 import '../css/homeview.css'
 
-const SearchesPage = () => {
-
-
+const MovieView = () => {
 
 return (
 
 <Container>
 
-<h2>Browse Top Movies</h2>
+
 
 <Card style={{ width: '18rem', marginTop: 80 }}>
   <Card.Img variant="top" src="holder.js/100px180" />
@@ -28,7 +26,7 @@ return (
     <Card.Text>
       Release Date:
     </Card.Text>
-    <Button variant="primary">Learn More</Button>
+    <Button variant="primary">Go somewhere</Button>
   </Card.Body>
 </Card>
 </Container>
@@ -36,4 +34,4 @@ return (
 
 )}
 
-export default SearchesPage;
+export default MovieView;
