@@ -20,7 +20,7 @@ function App() {
        
         <Switch>
           <Route path="/" exact></Route>
-          <SearchesPage/>
+          <SearchBooks/>
         </Switch>
 
         <Switch>
