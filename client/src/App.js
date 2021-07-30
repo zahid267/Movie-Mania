@@ -4,6 +4,8 @@ import SearchMovies from './pages/SearchMovies';
 import SavedMovies from './pages/SavedMovies';
 import Navbar from './components/Navbar';
 import HomeView from './pages/HomeView';
+import MovieView from './pages/MovieView';
+import ShowsView from './pages/ShowsView';
 
 import SearchesPage from './pages/SearchesPage';
 import BottomNav from './components/BottomNav';
@@ -18,7 +20,11 @@ function App() {
        
         <Switch>
           <SearchMovies/>
+         
         </Switch>
+
+        
+
         <BottomNav/>
       </>
     </Router>
