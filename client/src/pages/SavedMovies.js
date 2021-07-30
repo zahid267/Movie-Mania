@@ -3,9 +3,9 @@ import { Jumbotron, Container, CardColumns, Card, Button } from 'react-bootstrap
 
 import { getMe, deleteBook } from '../utils/API';
 import Auth from '../utils/auth';
-import { removeBookId } from '../utils/localStorage';
+import { removeMovieId } from '../utils/localStorage';
 
-const SavedBooks = () => {
+const SavedMovies = () => {
   const [userData, setUserData] = useState({});
 
   // use this to determine if `useEffect()` hook needs to run again
@@ -54,7 +54,7 @@ const SavedBooks = () => {
       const updatedUser = await response.json();
       setUserData(updatedUser);
       // upon success, remove book's id from localStorage
-      removeBookId(bookId);
+      removeMovieId(bookId);
     } catch (err) {
       console.error(err);
     }
@@ -74,12 +74,12 @@ const SavedBooks = () => {
       </Jumbotron>
       <Container>
         <h2>
-          {userData.savedBooks.length
-            ? `Viewing ${userData.savedBooks.length} saved ${userData.savedBooks.length === 1 ? 'book' : 'books'}:`
+          {userData.savedMovies.length
+            ? `Viewing ${userData.savedMovies.length} saved ${userData.savedMovies.length === 1 ? 'book' : 'books'}:`
             : 'You have no saved books!'}
         </h2>
         <CardColumns>
-          {userData.savedBooks.map((book) => {
+          {userData.savedMovies.map((book) => {
             return (
               <Card key={book.bookId} border='dark'>
                 {book.image ? <Card.Img src={book.image} alt={`The cover for ${book.title}`} variant='top' /> : null}
@@ -100,4 +100,4 @@ const SavedBooks = () => {
   );
 };
 
-export default SavedBooks;
+export default SavedMovies;

@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import SearchBooks from './pages/SearchBooks';
-import SavedBooks from './pages/SavedBooks';
+import SearchMovies from './pages/SearchMovies';
+import SavedMovies from './pages/SavedMovies';
 import Navbar from './components/Navbar';
 import HomeView from './pages/HomeView';
 import MovieView from './pages/MovieView';
@@ -19,19 +19,11 @@ function App() {
        <HomeView/>
        
         <Switch>
-          <Route path="/" exact></Route>
-          <SearchBooks/>
+          <SearchMovies/>
+         
         </Switch>
 
-        <Switch>
-          <Route path="/movies" exact></Route>
-          <MovieView/>
-        </Switch>
-
-        {/* <Switch>
-          <Route path="/shows" exact></Route>
-          <ShowsView/>
-        </Switch> */}
+        
 
         <BottomNav/>
       </>
