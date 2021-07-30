@@ -57,7 +57,7 @@ export const searchGoogleBooks = (query) => {
 };
 export const searchMovies = (query) => {
   //const subsKey = '36cdf6872fmsh4c920891e55aecdp1d76fdjsn61241435d1ec';   /// for https://ee.iva-api.com/api/entertainment/Search/? API
-  return fetch('https://ivaee-internet-video-archive-entertainment-v1.p.rapidapi.com/entertainment/search/?ProgramType=Movie&Includes=Descriptions,Images,Genres&StringDistance=0&Title='+query, {
+  return fetch('https://ivaee-internet-video-archive-entertainment-v1.p.rapidapi.com/entertainment/search/?ProgramTypes=Movie&Includes=Descriptions,Images,Genres&StringDistance=0&Title='+query, {
       'method': 'GET',
       'headers': {
         'content-type': 'application/json',

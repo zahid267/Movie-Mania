@@ -17,7 +17,7 @@ function App() {
        <HomeView/>
        
         <Switch>
-          <SearchesPage/>
+          <SearchBooks/>
         </Switch>
         <BottomNav/>
       </>
