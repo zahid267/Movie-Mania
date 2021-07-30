@@ -39,10 +39,35 @@ const SearchMovies = () => {
     }
     //const data = await response.json();
     console.log(response);
-    const {Hits} = await response.json();
-  //  console.log(Hits);
-   
+    const {Search} = await response.json();   /// "Search" is the inner object inside the returned respobse object
+    console.log(Search)
+    
 
+    const movieData = Search.map((movie) => ({
+      movieId: movie.imdbID,
+      type : movie.Type,
+     // genre : movie.Genre || '',
+     // rated: movie.Rated,
+      title: movie.Title,
+      //language : movie.Language || 'English',
+      //runtime : movie.Runtime || 1,
+      //released : movie.Released,
+      year : movie.Year,
+      //director: movie.Director || '',
+      //writer: movie.Writer || '',
+      //actors : movie.Actors,
+      //plot : movie.Plot,
+      //country : movie.Country,
+      //awards : movie.Awards || '',
+      image : movie.Poster,
+      //production : movie.Production
+    }));
+
+   console.log(movieData)
+
+//return false;
+/*
+const {Hits} = await response.json();
 const movieData = Hits.map((movie) => ({
         movieId: movie.Id,
         programType : movie.Source.ProgramType,
@@ -58,8 +83,8 @@ const movieData = Hits.map((movie) => ({
         image : ''
        // image: searchMovieImages(movie.Source.Images[0].FilePath)
 
-      }));
-  console.log(movieData);
+      }));*/
+  //console.log(movieData);
 /*const imageFilePath= '467313f11888e53b719d66eacee61db1';
 const imageResp= await searchMovieImages(imageFilePath);
 console.log(imageResp);
@@ -143,11 +168,8 @@ console.log(url);
                   <Card.Img src={movie.image} alt={`The cover for ${movie.title}`} variant='top' />
                 ) : null}
                 <Card.Body>
-                  <Card.Title>{movie.title}</Card.Title>
-                  <p className='small'>Genres: {movie.genres}</p>
-                  <p className='small'>Language: {movie.language},   Runtime : {movie.runtime}</p>
-                  <p className='small'>Sexuality: {movie.sexuality},         Year : {movie.year}</p>
-                  <Card.Text>Release Date : {movie.releaseDate}</Card.Text>
+                  <Card.Title>{movie.title}</Card.Title>   
+                  <p className='small'>  Year : {movie.year}</p>
                   {Auth.loggedIn() && (
                     <Button
                       disabled={savedMovieIds?.some((savedMovieId) => savedMovieId === movie.movieId)}

@@ -55,7 +55,7 @@ export const deleteBook = (bookId, token) => {
 export const searchGoogleBooks = (query) => {
   return fetch(`https://www.googleapis.com/books/v1/volumes?q=${query}`);
 };
-
+/*
 export const searchMovies = (query) => {
   return fetch('https://ivaee-internet-video-archive-entertainment-v1.p.rapidapi.com/entertainment/search/?ProgramTypes=Movie&Includes=Descriptions,Images,Genres&Title='+query, {
       'method': 'GET',
@@ -76,11 +76,13 @@ export const searchMovieImages = (imagepath) => {
         'x-rapidapi-host': 'ivaee-internet-video-archive-entertainment-v1.p.rapidapi.com'
       }
     });
-};
-/*  /// does not work
+};*/
+ /// does not work
 export const searchMovies = (query) => {
-  return fetch(`http://www.omdbapi.com/?apikey=f3511f7c&type=movie&page=10&t=${query}`);
+  return fetch(`http://www.omdbapi.com/?apikey=f3511f7c&type=movie&s=${query}`);
 };
-*/
+export const searchMovieDetail = (query) => {
+  return fetch(`http://www.omdbapi.com/?apikey=f3511f7c&type=movie&i=${query}`);
+};
 
-///// sample url  = http://www.omdbapi.com/?i=tt3896198&apikey=f3511f7c
+///// sample url  = http://www.omdbapi.com/?i=tt3896198&apikey=f3511f7c     /// i=xxx, i for movieid
