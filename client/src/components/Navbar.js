@@ -15,6 +15,7 @@ const AppNavbar = () => {
     <>
       <Navbar bg="light" expand="lg">
         <Container>
+          <Button className = 'bored'>I'm Bored</Button>
           <Navbar.Brand as={Link} to='/'>
             For Your Entertainment
           </Navbar.Brand>
@@ -26,7 +27,7 @@ const AppNavbar = () => {
               navbarScroll
             >
               <Nav.Link href="#action1">Home</Nav.Link>
-              <Nav.Link href="#action2">Movies</Nav.Link>
+              <Nav.Link to="/">Movies</Nav.Link>
               <Nav.Link href="#"> Tv Shows </Nav.Link>
               <NavDropdown title="Genre" id="navbarScrollingDropdown">
                 <NavDropdown.Item href="#action3">Action</NavDropdown.Item>

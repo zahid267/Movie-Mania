@@ -10,10 +10,14 @@ const BottomNav = () =>{
 
 return(
 
-<Navbar>
+<Navbar style={{marginTop: 120}}>
   <Container>
+    <Button className = 'bored'>I'm bored</Button>
     <Navbar.Brand href="#"> Home </Navbar.Brand>
-    <Navbar.Brand href="#"> Home </Navbar.Brand>
+    <Navbar.Brand href="#"> Movies </Navbar.Brand>
+    <Navbar.Brand href="#"> Tv Shows </Navbar.Brand>
+    <Navbar.Brand href="#"> Genre </Navbar.Brand>
+    <Navbar.Brand href="#"> Login/Sign Up </Navbar.Brand>
     <NavDropdown.Divider />
     <NavDropdown>
                 <NavDropdown.Item href="#action5">I am Bored</NavDropdown.Item>
