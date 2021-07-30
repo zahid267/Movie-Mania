@@ -4,6 +4,7 @@ import { Navbar, Nav, Container, Modal, Tab, NavDropdown, Form, FormControl, But
 import SignUpForm from './SignupForm';
 import LoginForm from './LoginForm';
 import '../css/navbar.css'
+import MovieView from '../pages/MovieView';
 
 import Auth from '../utils/auth';
 
@@ -15,6 +16,7 @@ const AppNavbar = () => {
     <>
       <Navbar bg="light" expand="lg">
         <Container>
+          <Button className = 'bored'>I'm Bored</Button>
           <Navbar.Brand as={Link} to='/'>
             For Your Entertainment
           </Navbar.Brand>
@@ -25,9 +27,9 @@ const AppNavbar = () => {
               style={{ maxHeight: '100px' }}
               navbarScroll
             >
-              <Nav.Link href="#action1">Home</Nav.Link>
-              <Nav.Link href="#action2">Movies</Nav.Link>
-              <Nav.Link href="#"> Tv Shows </Nav.Link>
+              <Nav.Link href="/">Home</Nav.Link>
+              <Nav.Link href="movies">Movies</Nav.Link>
+              <Nav.Link href="movies"> Tv Shows </Nav.Link>
               <NavDropdown title="Genre" id="navbarScrollingDropdown">
                 <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
                 <NavDropdown.Item href="#action4">Adventure</NavDropdown.Item>

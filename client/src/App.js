@@ -1,9 +1,11 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import SearchBooks from './pages/SearchBooks';
-import SavedBooks from './pages/SavedBooks';
+import SearchMovies from './pages/SearchMovies';
+import SavedMovies from './pages/SavedMovies';
 import Navbar from './components/Navbar';
 import HomeView from './pages/HomeView';
+import MovieView from './pages/MovieView';
+import ShowsView from './pages/ShowsView';
 
 import SearchesPage from './pages/SearchesPage';
 import BottomNav from './components/BottomNav';
@@ -17,8 +19,15 @@ function App() {
        <HomeView/>
        
         <Switch>
-          <SearchBooks/>
+
+
+          <SearchMovies/>
+         
+ main
         </Switch>
+
+        
+
         <BottomNav/>
       </>
     </Router>
