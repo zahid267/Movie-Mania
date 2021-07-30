@@ -57,26 +57,26 @@ export const searchGoogleBooks = (query) => {
 };
 export const searchMovies = (query) => {
   //const subsKey = '36cdf6872fmsh4c920891e55aecdp1d76fdjsn61241435d1ec';   /// for https://ee.iva-api.com/api/entertainment/Search/? API
-  return fetch('https://ivaee-internet-video-archive-entertainment-v1.p.rapidapi.com/entertainment/search/?ProgramTypes=Movie&Includes=Descriptions,Images,Genres&StringDistance=0&Title='+query, {
-      'method': 'GET',
-      'headers': {
-        'content-type': 'application/json',
-        'x-rapidapi-key': '36cdf6872fmsh4c920891e55aecdp1d76fdjsn61241435d1ec',
-        'x-rapidapi-host': 'ivaee-internet-video-archive-entertainment-v1.p.rapidapi.com'
+  return fetch("https://ivaee-internet-video-archive-entertainment-v1.p.rapidapi.com/entertainment/match/?ProgramType=movie&Title=" +query, {
+    "method": "GET",
+    "headers": {
+      "content-type": "application/json",
+      "x-rapidapi-key": "36cdf6872fmsh4c920891e55aecdp1d76fdjsn61241435d1ec",
+      "x-rapidapi-host": "ivaee-internet-video-archive-entertainment-v1.p.rapidapi.com"
       }
     });
   
 };
 
-export const searchMovieImages = (imagepath) => {
+export const searchMovieImages = (imgFilePath) => {
   //const subsKey = '36cdf6872fmsh4c920891e55aecdp1d76fdjsn61241435d1ec';   /// for https://ee.iva-api.com/api/entertainment/Search/? API
-  return fetch('https://ivaee-internet-video-archive-entertainment-v1.p.rapidapi.com/Images/'+imagepath+'/Redirect?Redirect=True', {
-      'method': 'GET',
-      'headers': {
-        'content-type': 'application/json',
-        'x-rapidapi-key': '36cdf6872fmsh4c920891e55aecdp1d76fdjsn61241435d1ec',
-        'x-rapidapi-host': 'ivaee-internet-video-archive-entertainment-v1.p.rapidapi.com'
+  return fetch("https://ivaee-internet-video-archive-entertainment-v1.p.rapidapi.com/Images/"+imgFilePath+"/Redirect?Redirect=False", {
+    "method": "GET",
+    "headers": {
+      "accept": "application/json",
+      "x-rapidapi-key": "36cdf6872fmsh4c920891e55aecdp1d76fdjsn61241435d1ec",
+      "x-rapidapi-host": "ivaee-internet-video-archive-entertainment-v1.p.rapidapi.com"
       }
     });
-  
+
 };

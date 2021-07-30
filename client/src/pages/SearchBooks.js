@@ -7,6 +7,10 @@ import Auth from '../utils/auth';
 import { saveBook, searchMovies, searchMovieImages, searchGoogleBooks } from '../utils/API';
 import { saveBookIds, getSavedBookIds } from '../utils/localStorage';
 
+
+
+
+
 const SearchBooks = () => {
   // create state for holding returned google api data
   const [searchedBooks, setSearchedBooks] = useState([]);
@@ -27,74 +31,108 @@ const SearchBooks = () => {
     event.preventDefault();
 
     if (!searchInput) {
-      return false;
+      return;
     }
 
     try {
-     // const response = await searchGoogleBooks(searchInput);
+      // const response = await searchGoogleBooks(searchInput);
 
       //const response = await searchMovies(searchInput);
 
 
-    // return fetch('https://ivaee-internet-video-archive-entertainment-v1.p.rapidapi.com/entertainment/search/?ProgramType=Movie&Includes=Descriptions,Images,Genres&StringDistance='+searchInput.length+'&Title='+searchInput, {
-    //   'method': 'GET',
-    //   'headers': {
-    //     'content-type': 'application/json',
-    //     'x-rapidapi-key': '36cdf6872fmsh4c920891e55aecdp1d76fdjsn61241435d1ec',
-    //     'x-rapidapi-host': 'ivaee-internet-video-archive-entertainment-v1.p.rapidapi.com'
-    //   }
-    // })
-    const response = await searchMovies(searchInput)
+      // return fetch('https://ivaee-internet-video-archive-entertainment-v1.p.rapidapi.com/entertainment/search/?ProgramType=Movie&Includes=Descriptions,Images,Genres&StringDistance='+searchInput.length+'&Title='+searchInput, {
+      //   'method': 'GET',
+      //   'headers': {
+      //     'content-type': 'application/json',
+      //     'x-rapidapi-key': '36cdf6872fmsh4c920891e55aecdp1d76fdjsn61241435d1ec',
+      //     'x-rapidapi-host': 'ivaee-internet-video-archive-entertainment-v1.p.rapidapi.com'
+      //   }
+      // })
 
-    if (!response.ok) {
-      throw new Error('oh crap')
-    }
-    //const data = await response.json();
-    //console.log(data);
-    const { Hits } = await response.json();
-    console.log(Hits);
-    
-const movieData = Hits.map((movie) => ({
-        movieId: movie.Id,
-        programType : movie.Source.ProgramType,
-        genres : movie.Source.Genres || '',
-        imageCount:movie.Source.ImageCount,
-        title: movie.Source.Title,
-        imageFilePath: movie.Source.FilePath || '',
-        sexuality:movie.Source.Sexuality || 0,
-        language : movie.Source.OriginalLanguage || 'English',
-        length : movie.Source.Length || 1,
-        releaseDate : movie.Source.OriginalReleaseDate
+      // const imp = 'da7c56710066a8880f8a38be739742bb'
 
+
+
+      // const responseimg = await searchMovieImages(imp)
+      // console.log('hiii',responseimg)
+      // if (!responseimg.ok) {
+      //   throw new Error('oh crap')
+
+      // }
+
+
+
+
+
+
+      const response = await searchMovies(searchInput)
+
+
+      //const data = await response.json();
+      //console.log(data);
+      const { ProgramMatches } = await response.json();
+
+      // console.log(ProgramMatches.Image);
+
+
+
+      const movieDataArr = await ProgramMatches.map((movie) => ({
+        Id: movie.Id,
+        programType: movie.ProgramType,
+        Type: movie.Type,
+        Year: movie.Year,
+        OriginalLanguage: movie.OriginalLanguage,
+        Title: movie.Title,
+        Runtime: movie.Runtime,
+        OfficialSiteUrl: movie.OfficialSiteUrl,
+        Status: movie.Status,
+        Releases: movie.Releases[0].Type, //need to map this Data = Certification,CountryName,Type
+        Contributors: movie.Contributors[1], //need to map this Data = PersonName,Character,Job
+        Descriptions: movie.Descriptions[1], //need to map this Data = Description,Attribution,Language
+        IvaRating: movie.IvaRating,
+        Summary: movie.Summary.Image.FilePath, // map[Video]map Title,Type,[ScreenCaptures]map Filepath
+        // map[Image] Id,Filepath, ImageType    
+        Images: movie.Summary.Image
       }));
-  console.log(movieData);
-
-      return false;
 
 
-      if (!response.ok) {
-        throw new Error('something went wrong!');
+
+      if (movieDataArr) {
+
+        setSearchedBooks(movieDataArr);
       }
+      // let myImageUrl = ''
+      // const myMovie = await movieDataArr.pop();
+      // // your function will start here
+      // const myImage = await myMovie.Summary;
 
-      const { items } = await response.json();
-
-      console.log(items);
-      return false;
-
-      const bookData = items.map((book) => ({
-        bookId: book.id,
-        authors: book.volumeInfo.authors || ['No author to display'],
-        title: book.volumeInfo.title,
-        description: book.volumeInfo.description,
-        image: book.volumeInfo.imageLinks?.thumbnail || '',
-      }));
-
-      setSearchedBooks(bookData);
+      // if (myImage && myImage.length > 0) {
+      //   const imageResponse = await searchMovieImages(myImage)
+      //   myImageUrl = imageResponse && imageResponse.url ? imageResponse.url : '';
+      //   console.log(imageResponse.url)
+      // }
       setSearchInput('');
     } catch (err) {
       console.error(err);
     }
   };
+
+  function getImageUrl(movieImg) {
+    
+   
+    if (movieImg) {
+      const response = searchMovieImages(movieImg);
+      return response && Response.url ? Response.url : '';
+    
+    } else {
+      
+      console.log(Response.url)
+      return '';
+      console.log(Response.url)
+    }
+    console.log(Response.url)
+  }
+
 
   // create function to handle saving a book to our database
   const handleSaveBook = async (bookId) => {
@@ -121,6 +159,8 @@ const movieData = Hits.map((movie) => ({
       console.error(err);
     }
   };
+
+
 
   return (
     <>
@@ -156,22 +196,32 @@ const movieData = Hits.map((movie) => ({
             : 'Search for a book to begin'}
         </h2>
         <CardColumns>
-          {searchedBooks.map((book) => {
+
+          {searchedBooks.map((movie) => {
+
+
             return (
-              <Card key={book.bookId} border='dark'>
-                {book.image ? (
-                  <Card.Img src={book.image} alt={`The cover for ${book.title}`} variant='top' />
+              <Card key={movie.Id} border='dark'>
+                {movie.Summary && movie.Title ? (
+
+                  <Card.Img src={getImageUrl(movie.Summary)} alt={`The cover for ${movie.Title}`} variant='top' />
                 ) : null}
+
                 <Card.Body>
-                  <Card.Title>{book.title}</Card.Title>
-                  <p className='small'>Authors: {book.authors}</p>
-                  <Card.Text>{book.description}</Card.Text>
+                  <Card.Title>{movie.Title}</Card.Title>
+                  <p className='small'>Program Type: {movie.Type}</p>
+                  <Card.Text>
+                    <p className='small'>Year: {movie.Releases}</p>
+                    <Card.Text>
+                      <p className='small'>Rating: {movie.Summary}</p>
+                    </Card.Text>
+                  </Card.Text>
                   {Auth.loggedIn() && (
                     <Button
-                      disabled={savedBookIds?.some((savedBookId) => savedBookId === book.bookId)}
+                      disabled={savedBookIds?.some((savedBookId) => savedBookId === movie.bookId)}
                       className='btn-block btn-info'
-                      onClick={() => handleSaveBook(book.bookId)}>
-                      {savedBookIds?.some((savedBookId) => savedBookId === book.bookId)
+                      onClick={() => handleSaveBook(movie.bookId)}>
+                      {savedBookIds?.some((savedBookId) => savedBookId === movie.bookId)
                         ? 'This book has already been saved!'
                         : 'Save this Book!'}
                     </Button>
