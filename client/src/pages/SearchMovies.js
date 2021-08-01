@@ -163,23 +163,27 @@ console.log(url);
         <CardColumns>
           {searchedMovies.map((movie) => {
             return (
-              <Card key={movie.movieId} border='dark'>
+              <Card className="card" key={movie.movieId} border='dark'>
                 {movie.image ? (
-                  <Card.Img src={movie.image} alt={`The cover for ${movie.title}`} variant='top' />
+                  <Card.Img className="image" src={movie.image} alt={`The cover for ${movie.title}`} variant='top' />
                 ) : null}
                 <Card.Body>
-                  <Card.Title>{movie.title}</Card.Title>   
+                  <Card.Title className="movietitle">{movie.title}</Card.Title>   
                   <p className='small'>  Year : {movie.year}</p>
-                  {Auth.loggedIn() && (
-                    <Button
+                  {/* {Auth.loggedIn() && (
+                    <Button className = "savebtn"
                       disabled={savedMovieIds?.some((savedMovieId) => savedMovieId === movie.movieId)}
                       className='btn-block btn-info'
                       onClick={() => handleSaveMovie(movie.movieId)}>
                       {savedMovieIds?.some((savedMovieId) => savedMovieId === movie.movieId)
                         ? 'This movie has already been saved!'
-                        : 'Save this movie!'}
+                        : 'Save this movie!'} Save Movie!
                     </Button>
-                  )}
+      
+                  )} */}
+
+                  <Button>Save Movie</Button>
+
                 </Card.Body>
               </Card>
             );

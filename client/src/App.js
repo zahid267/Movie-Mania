@@ -6,6 +6,7 @@ import Navbar from './components/Navbar';
 import HomeView from './pages/HomeView';
 import MovieView from './pages/MovieView';
 import ShowsView from './pages/ShowsView';
+import Dashboard from './pages/Dashboard';
 
 import SearchesPage from './pages/SearchesPage';
 import BottomNav from './components/BottomNav';
@@ -19,7 +20,14 @@ function App() {
        <HomeView/>
        
         <Switch>
-          <SearchMovies/>
+
+          <Route path="" exact>
+          <SearchMovies />
+          </Route>
+
+          <Route path="/movies" exact>
+          <Dashboard />
+          </Route>
          
         </Switch>
 
