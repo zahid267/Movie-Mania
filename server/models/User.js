@@ -21,7 +21,7 @@ const userSchema = new Schema(
       type: String,
       required: true,
     },
-    // set savedBooks to be an array of data that adheres to the bookSchema
+    // set savedBooks to be an array of data that adheres to the movieSchema
     savedMovies: [movieSchema], // save ids of the movie  
   },
   // set this to use virtual below
