@@ -2,16 +2,16 @@ import React from 'react';
 import { Container } from 'react-bootstrap';
 import '../css/dashboard.css'
 
-const Dashboard = () => {
+const Watched = () => {
 
     return (
 
         <Container>
 
-            <h2 className="dh">Dashboard</h2>
+            <h2 className="dh">Watched Movies</h2>
         </Container>
 
     )}
 
 
-export default Dashboard;
+export default Watched;

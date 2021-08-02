@@ -10,6 +10,8 @@ import Dashboard from './pages/Dashboard';
 
 import SearchesPage from './pages/SearchesPage';
 import BottomNav from './components/BottomNav';
+import Watched from './pages/Watched';
+import Wishlist from './pages/Wishlist';
 
 
 function App() {
@@ -21,14 +23,22 @@ function App() {
        
         <Switch>
 
-          <Route path="" exact>
-          <SearchMovies />
+          <Route path="/" exact>
+       
+          <Dashboard />
           </Route>
 
           <Route path="/movies" exact>
-          <Dashboard />
+          <SearchMovies />
           </Route>
-         
+
+          <Route path="/watched" exact>
+          <Watched />
+          </Route>
+
+          <Route path="/wishlist" exact>
+          <Wishlist />
+          </Route>
         </Switch>
 
         
