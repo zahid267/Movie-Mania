@@ -5,7 +5,6 @@ export const LOGIN_USER = gql`
     login(email: $email, password: $password) {
       token
       user {
-        _id
         username
         email
       }
@@ -17,13 +16,31 @@ export const ADD_USER = gql`
     addUser(username: $username, email: $email, password: $password) {
       token
       user {
-        _id
         username
+        email
       }
     }
   }
 `;
 export const SAVE_MOVIE = gql`
+    mutation saveMovie($movieData: movieInput!) {
+        saveMovie(movieData: $movieData) {
+            _id
+            username
+            email
+            movieCount
+            savedMovies {
+              year
+              description
+              title
+              link
+              movieId
+              image
+            }
+        }
+    }
+`;
+export const REMOVE_MOVIE = gql`
     mutation saveMovie($movieData: movieInput!) {
         saveMovie(movieData: $movieData) {
             _id

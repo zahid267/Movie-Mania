@@ -9,28 +9,45 @@ import ShowsView from './pages/ShowsView';
 
 import SearchesPage from './pages/SearchesPage';
 import BottomNav from './components/BottomNav';
+import { ApolloProvider, createHttpLink, ApolloClient, InMemoryCache } from '@apollo/client';
+import { setContext } from '@apollo/client/link/context';
+
+const httpLink = createHttpLink({
+  uri: '/graphql',
+});
+
+const authLink = setContext((_, { headers }) => {
+  const myToken = localStorage.getItem('id_token');
+  return {
+    headers: {
+      ...headers,
+      authorization: myToken ? `Bearer ${myToken}`: '',
+    },
+  };
+});
+
+const client = new ApolloClient({
+  link: authLink.concat(httpLink),
+  cache: new InMemoryCache()
+});
 
 
 function App() {
   return (
-    <Router>
-      <>
-        <Navbar />
-       <HomeView/>
-       
-        <Switch>
+    <ApolloProvider client={client}>
+      <Router>
+        <>
+          <Navbar />
+          <HomeView />
+          <Switch>
+            <SearchMovies />
+          </Switch>
 
+          <BottomNav />
+        </>
+      </Router>
+    </ApolloProvider>
 
-          <SearchMovies/>
-         
- main
-        </Switch>
-
-        
-
-        <BottomNav/>
-      </>
-    </Router>
   );
 }
 

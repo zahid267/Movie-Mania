@@ -8,7 +8,7 @@ export const getMe = (token) => {
   });
 };
 
-export const createUser = (userData) => {
+export const addUser = (userData) => {
   return fetch('/api/users', {
     method: 'POST',
     headers: {
@@ -41,7 +41,7 @@ export const saveMovie = (movieData, token) => {
 };
 
 // remove saved movie data for a logged in user
-export const deleteBook = (movieId, token) => {
+export const deleteMovie = (movieId, token) => {
   return fetch(`/api/users/movies/${movieId}`, {
     method: 'DELETE',
     headers: {
@@ -52,7 +52,7 @@ export const deleteBook = (movieId, token) => {
 
 // make a search to google books api
 // https://www.googleapis.com/books/v1/volumes?q=harry+potter
-export const searchGoogleBooks = (query) => {
+/*export const searchGoogleBooks = (query) => {
   return fetch(`https://www.googleapis.com/books/v1/volumes?q=${query}`);
 };
 /*
