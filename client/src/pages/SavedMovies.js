@@ -1,16 +1,28 @@
 import React, { useState, useEffect } from 'react';
 import { Jumbotron, Container, CardColumns, Card, Button } from 'react-bootstrap';
 
-import { getMe, deleteBook } from '../utils/API';
+//import { getMe, deleteMovie } from '../utils/API';
+// new lines
+import { useMutation, useQuery } from '@apollo/client';
+import { GET_ME } from '../utils/queries';
+import { REMOVE_MOVIE } from '../utils/mutations';
+/// new lines end
+
 import Auth from '../utils/auth';
 import { removeMovieId } from '../utils/localStorage';
 
 const SavedMovies = () => {
   const [userData, setUserData] = useState({});
 
-  // use this to determine if `useEffect()` hook needs to run again
-  const userDataLength = Object.keys(userData).length;
+  const [removeMovie] = useMutation(REMOVE_MOVIE);
 
+  const { loading, data } = useQuery(GET_ME);
+
+  var userD = data?.myMovies.savedMovies || [];
+  setUserData(userD);
+  // use this to determine if `useEffect()` hook needs to run again
+  //const userDataLength = Object.keys(userData).length;
+/*
   useEffect(() => {
     const getUserData = async () => {
       try {
@@ -35,9 +47,9 @@ const SavedMovies = () => {
 
     getUserData();
   }, [userDataLength]);
-
-  // create function that accepts the book's mongo _id value as param and deletes the book from the database
-  const handleDeleteBook = async (bookId) => {
+*/
+  // create function that accepts the movie's mongo _id value as param and deletes the movie from the database
+  const handleDeleteMovie = async (movieId) => {
     const token = Auth.loggedIn() ? Auth.getToken() : null;
 
     if (!token) {
@@ -45,23 +57,20 @@ const SavedMovies = () => {
     }
 
     try {
-      const response = await deleteBook(bookId, token);
-
-      if (!response.ok) {
-        throw new Error('something went wrong!');
-      }
-
-      const updatedUser = await response.json();
+      const { loading, data } = await removeMovie({
+        variables: {movieId },token
+      });
+      const updatedUser = data?.data || [];
       setUserData(updatedUser);
-      // upon success, remove book's id from localStorage
-      removeMovieId(bookId);
+      // upon success, remove movie's id from localStorage
+      removeMovieId(movieId);
     } catch (err) {
       console.error(err);
     }
   };
 
   // if data isn't here yet, say so
-  if (!userDataLength) {
+  if (loading) {
     return <h2>LOADING...</h2>;
   }
 
@@ -69,26 +78,26 @@ const SavedMovies = () => {
     <>
       <Jumbotron fluid className='text-light bg-dark'>
         <Container>
-          <h1>Viewing saved books!</h1>
+          <h1>Viewing saved movies!</h1>
         </Container>
       </Jumbotron>
       <Container>
         <h2>
-          {userData.savedMovies.length
-            ? `Viewing ${userData.savedMovies.length} saved ${userData.savedMovies.length === 1 ? 'book' : 'books'}:`
-            : 'You have no saved books!'}
+          {userData.length
+            ? `Viewing ${userData.length} saved ${userData.length === 1 ? 'movie' : 'movies'}:`
+            : 'You have no saved movies!'}
         </h2>
         <CardColumns>
-          {userData.savedMovies.map((book) => {
+          {userData.map((movie) => {
             return (
-              <Card key={book.bookId} border='dark'>
-                {book.image ? <Card.Img src={book.image} alt={`The cover for ${book.title}`} variant='top' /> : null}
+              <Card key={movie.movieId} border='dark'>
+                {movie.image ? <Card.Img src={movie.image} alt={`The cover for ${movie.title}`} variant='top' /> : null}
                 <Card.Body>
-                  <Card.Title>{book.title}</Card.Title>
-                  <p className='small'>Authors: {book.authors}</p>
-                  <Card.Text>{book.description}</Card.Text>
-                  <Button className='btn-block btn-danger' onClick={() => handleDeleteBook(book.bookId)}>
-                    Delete this Book!
+                  <Card.Title>{movie.title}</Card.Title>
+                  <p>Year: {movie.year}</p>
+                  
+                  <Button className='btn-block btn-danger' onClick={() => handleDeleteMovie(movie.movieId)}>
+                    Delete this Movie!
                   </Button>
                 </Card.Body>
               </Card>
