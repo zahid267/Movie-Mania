@@ -6,7 +6,7 @@ import { Jumbotron, Container, Col, Form, Button, Card, CardColumns } from 'reac
 //import axios from 'axios';
 import '../css/search.css'
 import Auth from '../utils/auth';
-import { searchMovies, searchMovieImages, searchGoogleMovies } from '../utils/API';
+import { searchMovies } from '../utils/API';
 import { saveMovieIds, getSavedMovieIds } from '../utils/localStorage';
 
 // new lines
