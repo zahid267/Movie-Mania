@@ -16,7 +16,7 @@ const typeDefs = gql`
 
   input MovieInput {
     movieId: String!
-    type: String!
+    type: String
     title: String!
     image: String
     year: String!
@@ -25,7 +25,7 @@ const typeDefs = gql`
   
   type Movie {
     movieId : String!
-    type: String!
+    type: String
     title : String!
     image : String
     year : String
