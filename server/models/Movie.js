@@ -5,6 +5,9 @@ const movieSchema = new Schema({
     movieId: {
         type: String,
         required: true,
+
+    year: {
+        type: Number,
     },
     type: {
         type: String,

@@ -17,9 +17,12 @@ import Navbar from './components/Navbar';
 import HomeView from './pages/HomeView';
 import MovieView from './pages/MovieView';
 import ShowsView from './pages/ShowsView';
+import Dashboard from './pages/Dashboard';
 
 import SearchesPage from './pages/SearchesPage';
 import BottomNav from './components/BottomNav';
+import Watched from './pages/Watched';
+import Wishlist from './pages/Wishlist';
 
 // new lines next
 // Construct our main GraphQL API endpoint
@@ -56,12 +59,30 @@ function App() {
        
         <Switch>
 
+
           <Route exact path='/' component={SearchMovies} />
           <Route exact path='/saved' component={SavedMovies} />
 
           <Route path='/detail/:id' component={MovieDetail} />
 
+          <Route path="/" exact>
+       
+          <Dashboard />
+          </Route>
+
+          <Route path="/movies" exact>
+          <SearchMovies />
+          </Route>
+
+          <Route path="/watched" exact>
+          <Watched />
+          </Route>
+
+          <Route path="/wishlist" exact>
+          <Wishlist />
+          </Route>
         </Switch>
+
      
         <BottomNav/>
     </Router>
