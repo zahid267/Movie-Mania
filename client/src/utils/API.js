@@ -88,10 +88,10 @@ export const searchMovieImages = (imagepath) => {
  /// does not work
 export const searchMovies = (query) => {
  // return axios.get(`${BASEURLSTRING}${query}`);
-  return fetch(`http://www.omdbapi.com/?apikey=f3511f7c&type=movie&s=${query}`);
+  return fetch(`https://www.omdbapi.com/?apikey=f3511f7c&type=movie&s=${query}`);
 };
 export const searchMovieDetail = (query) => {
-  return fetch(`http://www.omdbapi.com/?apikey=f3511f7c&type=movie&i=${query}`);
+  return fetch(`https://www.omdbapi.com/?apikey=f3511f7c&type=movie&i=${query}`);
 };
 
 ///// sample url  = http://www.omdbapi.com/?i=tt3896198&apikey=f3511f7c     /// i=xxx, i for movieid
