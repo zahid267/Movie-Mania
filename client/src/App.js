@@ -63,7 +63,7 @@ function App() {
           <Route exact path='/' component={SearchMovies} />
           <Route exact path='/saved' component={SavedMovies} />
 
-          <Route path='/detail/:id' component={MovieDetail} />
+          <Route path='/detail/:movieId' component={MovieDetail} />
 
           <Route path="/" exact>
        
