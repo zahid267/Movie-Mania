@@ -164,25 +164,20 @@ const SearchMovies = () => {
                 <Card.Body>
                   <Card.Title className="movietitle">{movie.title}</Card.Title>   
                   <p className='small'>  Year : {movie.year}</p>
-                  {/* {Auth.loggedIn() && (
-                    <Button className = "savebtn"
+                  
+                  {Auth.loggedIn() && (
+                    <Button
                       disabled={savedMovieIds?.some((savedMovieId) => savedMovieId === movie.movieId)}
                       className='btn-block btn-info'
                       onClick={() => handleSaveMovie(movie.movieId)}>
                       {savedMovieIds?.some((savedMovieId) => savedMovieId === movie.movieId)
                         ? 'This movie has already been saved!'
-                        : 'Save this movie!'} Save Movie!
+                        : 'Save this movie!'}
                     </Button>
-      
-                  )} */}
-
-                  <Button>Save Movie</Button>
+                  )}
 
                 </Card.Body>
                 <ul>
-                  // we are passing in an id to the path
-                  // you'll be able to access that id when the component loads
-                  // use the params to make  your query once the path loads
                     <li><Link to={{pathname: `/detail/${movie.movieId}`}} >Detail</Link></li>
                 </ul>
               </Card>
