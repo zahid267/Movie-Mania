@@ -1,3 +1,8 @@
+import axios from 'axios';
+const BASEURL = process.env.REACT_APP_BASEURL_TITLE;
+const BASEURLID = process.env.REACT_APP_BASEURL_ID;
+const BASEURLSTRING = process.env.REACT_APP_BASEURL_STRING;
+
 // route to get logged in user's info (needs the token)
 export const getMe = (token) => {
   return fetch('/api/users/me', {
@@ -82,6 +87,7 @@ export const searchMovieImages = (imagepath) => {
 };*/
  /// does not work
 export const searchMovies = (query) => {
+ // return axios.get(`${BASEURLSTRING}${query}`);
   return fetch(`http://www.omdbapi.com/?apikey=f3511f7c&type=movie&s=${query}`);
 };
 export const searchMovieDetail = (query) => {
