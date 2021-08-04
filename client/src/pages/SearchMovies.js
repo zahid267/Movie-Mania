@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from "react-router-dom"; 
+
 import { Jumbotron, Container, Col, Form, Button, Card, CardColumns } from 'react-bootstrap';
 //var axios = require("axios").default;
 //import axios from 'axios';
@@ -6,6 +8,13 @@ import '../css/search.css'
 import Auth from '../utils/auth';
 import { searchMovies, searchMovieImages, searchGoogleMovies } from '../utils/API';
 import { saveMovieIds, getSavedMovieIds } from '../utils/localStorage';
+
+// new lines
+// Import the `useMutation()` hook from Apollo Client
+import { useMutation } from '@apollo/client';
+// Import the GraphQL mutation
+import { SAVE_MOVIE } from '../utils/mutations';
+// new lines end
 
 const SearchMovies = () => {
   // create state for holding returned google api data
@@ -15,6 +24,11 @@ const SearchMovies = () => {
 
   // create state to hold saved MovieId values
   const [savedMovieIds, setSavedMovieIds] = useState(getSavedMovieIds());
+
+  //new lines
+  // Invoke `useMutation()` hook to return a Promise-based function and data about the ADD_PROFILE mutation
+  const [saveMovie] = useMutation(SAVE_MOVIE);
+  // new lines end
 
   // set up useEffect hook to save `savedMovieIds` list to localStorage on component unmount
   // learn more here: https://reactjs.org/docs/hooks-effect.html#effects-with-cleanup
@@ -38,9 +52,9 @@ const SearchMovies = () => {
       throw new Error('oh crap')
     }
     //const data = await response.json();
-    console.log(response);
-    const {Search} = await response.json();   /// "Search" is the inner object inside the returned respobse object
-    console.log(Search)
+  //  console.log(response);
+    const { Search } = await response.json();   /// "Search" is the inner object inside the returned respobse object
+  //  console.log(Search)
     
 
     const movieData = Search.map((movie) => ({
@@ -52,7 +66,8 @@ const SearchMovies = () => {
       //language : movie.Language || 'English',
       //runtime : movie.Runtime || 1,
       //released : movie.Released,
-      year : movie.Year,
+      // year: Number(movie.Year),
+      year: movie.Year,
       //director: movie.Director || '',
       //writer: movie.Writer || '',
       //actors : movie.Actors,
@@ -66,33 +81,6 @@ const SearchMovies = () => {
    console.log(movieData)
 
 //return false;
-/*
-const {Hits} = await response.json();
-const movieData = Hits.map((movie) => ({
-        movieId: movie.Id,
-        programType : movie.Source.ProgramType,
-        genres : movie.Source.Genres || '',
-        imageCount:movie.Source.ImageCount,
-        title: movie.Source.Title,
-        language : movie.Source.OriginalLanguage || 'English',
-        runtime : movie.Source.Runtime || 1,
-        releaseDate : (movie.Source.OriginalReleaseDate).slice(0,10),
-        year : movie.Source.Year,
-        imageFilePath: movie.Source.Images[0].FilePath || '',
-        sexuality:movie.Source.Images[0].Sexuality || 0,
-        image : ''
-       // image: searchMovieImages(movie.Source.Images[0].FilePath)
-
-      }));*/
-  //console.log(movieData);
-/*const imageFilePath= '467313f11888e53b719d66eacee61db1';
-const imageResp= await searchMovieImages(imageFilePath);
-console.log(imageResp);
-const url = await imageResp.json();
-console.log(url);
-*/
-   //   return false;
-
 
       setSearchedMovies(movieData);
       setSearchInput('');
@@ -108,23 +96,29 @@ console.log(url);
 
     // get token
     const token = Auth.loggedIn() ? Auth.getToken() : null;
+    //console.log("token :" + token);
 
     if (!token) {
       return false;
     }
-/*
+    //console.log("movieId : " + movieId);
+   // console.log("tosave-rec: " + movieToSave.movieId+ " - " +movieToSave.title+ " - " +movieToSave.image+ " - " +movieToSave.year);
+
     try {
-      const response = await saveMovie(movieToSave, token);
+      //const response = await saveMovie(movieToSave, token);
+      const { data } = await saveMovie({
+        variables:{ movieData: {...movieToSave} },
+      });
 
-      if (!response.ok) {
-        throw new Error('something went wrong!');
+     // if (!response.ok) {
+      if (!data) {
+        throw new Error('something went wrong while saving movie!');
       }
-
       // if movie successfully saves to user's account, save movie id to state
       setSavedMovieIds([...savedMovieIds, movieToSave.movieId]);
     } catch (err) {
       console.error(err);
-    }*/
+    }
   };
 
   return (
@@ -185,6 +179,12 @@ console.log(url);
                   <Button>Save Movie</Button>
 
                 </Card.Body>
+                <ul>
+                  // we are passing in an id to the path
+                  // you'll be able to access that id when the component loads
+                  // use the params to make  your query once the path loads
+                    <li><Link to={{pathname: `/detail/${movie.movieId}`}} >Detail</Link></li>
+                </ul>
               </Card>
             );
           })}
