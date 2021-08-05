@@ -102,13 +102,13 @@ const MovieDetail = () => {
   return (
     <>
 
-      <Container>
-        <h2>
-          Viewing '{movie.Title}'
+      <Container className="moviec">
+        <h2 className="title">
+          {movie.Title}
         </h2>
         <CardColumns>
 
-          <Card key={movie.imdbID} border='dark' style={{ width: '40rem' }}>
+          <Card  className="movimg" key={movie.imdbID} border='dark' style={{ width: '40rem' }}>
             {movie.Poster ? (
               <Card.Img src={movie.Poster} alt={`The cover for ${movie.Title}`} variant='top' />
             ) : null}

@@ -14,3 +14,15 @@
  .image {
      height: 500px;
  }
+
+ .title {
+     margin-top: 50px;
+     margin-bottom: 50px;
+     font-size: 60px;
+ }
+
+ .moviec {
+     max-width: 80vw;
+     align-items: center;
+    
+ }
