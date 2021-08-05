@@ -58,7 +58,7 @@ const MovieDetail = () => {
  
   useEffect(()=> {
     
-    axios.get(`http://www.omdbapi.com/?apikey=f3511f7c&type=movie&i=${params.movieId}`)
+    axios.get(`https://www.omdbapi.com/?apikey=f3511f7c&type=movie&i=${params.movieId}`)
     .then(res => {
        // console.log("resp : " + res.data)
         setMovie(res.data);
