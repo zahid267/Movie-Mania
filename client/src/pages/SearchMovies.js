@@ -177,9 +177,9 @@ const SearchMovies = () => {
                   )}
 
                 </Card.Body>
-                <ul>
-                    <li><Link to={{pathname: `/detail/${movie.movieId}`}} >Detail</Link></li>
-                </ul>
+                <Button className="readmorebtn">
+                    <Link className="link" to={{pathname: `/detail/${movie.movieId}`}} >Read More</Link>
+                    </Button> 
               </Card>
             );
           })}
