@@ -29,6 +29,7 @@ const typeDefs = gql`
     title : String!
     image : String
     year : String
+    watched: Boolean
   }
 
   type Query {
@@ -43,7 +44,7 @@ const typeDefs = gql`
     loginUser(email: String!, password: String!): Auth
     saveMovie(movieData: MovieInput!): User
     removeMovie(movieId: ID!): User
-    
+    watchedMovie(movieId: ID!): User
   }
 `;
 

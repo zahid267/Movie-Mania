@@ -61,7 +61,7 @@ function App() {
 
 
           <Route exact path='/' component={SearchMovies} />
-          <Route exact path='/saved' component={SavedMovies} />
+        
 
           <Route path='/detail/:movieId' component={MovieDetail} />
 
@@ -69,6 +69,11 @@ function App() {
        
           <Dashboard />
           </Route>
+
+          <Route path="/saved" exact>
+          <SavedMovies />
+          </Route>
+
 
           <Route path="/movies" exact>
           <SearchMovies />
@@ -83,7 +88,7 @@ function App() {
           </Route>
         </Switch>
 
-     
+        
         <BottomNav/>
     </Router>
     </ApolloProvider>

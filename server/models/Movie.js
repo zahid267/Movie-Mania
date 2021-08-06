@@ -22,6 +22,10 @@ const movieSchema = new Schema({
     year: {
         type: String,
     },
+    watched: {
+        type : Boolean,
+        default: false
+    },
     description: {
         type: String,
 

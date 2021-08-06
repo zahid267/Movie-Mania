@@ -69,7 +69,7 @@ const MovieDetail = () => {
     .catch(err =>{
         console.log(err)
     })
-    return () => saveMovieIds(savedMovieIds);
+    saveMovieIds(savedMovieIds);
 }, [params.movieId])
 
   // create function to handle saving a Movie to our database
