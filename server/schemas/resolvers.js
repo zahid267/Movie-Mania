@@ -65,6 +65,19 @@ const resolvers = {
       }
       throw new AuthenticationError('You need to be logged in!');
     },
+
+    // Make it so a logged in user can only mark a movie as watched from their own saveMovies
+    watchedMovie: async (parent, { movieId }, context) => {
+      if (context.user) {
+        return User.findOneAndUpdate(
+          { _id: context.user._id },
+          { $set: { savedMovies: { movieId: movieId } } },{watched : true},
+            
+          { new: true }
+        );
+      }
+      throw new AuthenticationError('You need to be logged in!');
+    },
   },
 };
 
