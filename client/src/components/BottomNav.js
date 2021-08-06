@@ -13,20 +13,14 @@ return(
 <Navbar style={{marginTop: 120}}>
   <Container>
     <Button className = 'bored'>I'm bored</Button>
-    <Navbar.Brand href="#"> Home </Navbar.Brand>
-    <Navbar.Brand href="#"> Movies </Navbar.Brand>
-    <Navbar.Brand href="#"> Tv Shows </Navbar.Brand>
-    <Navbar.Brand href="#"> Genre </Navbar.Brand>
-    <Navbar.Brand href="#"> Login/Sign Up </Navbar.Brand>
+    <Navbar.Brand href="/"> Home </Navbar.Brand>
+    <Navbar.Brand href="/movies"> Movies </Navbar.Brand>
     <NavDropdown.Divider />
     <NavDropdown>
                 <NavDropdown.Item href="#action5">I am Bored</NavDropdown.Item>
               </NavDropdown>
     <Navbar.Toggle />
     <Navbar.Collapse className="justify-content-end">
-      <Navbar.Text>
-        Signed in as: <a href="#login">Mark Otto</a>
-      </Navbar.Text>
     </Navbar.Collapse>
   </Container>
 </Navbar>

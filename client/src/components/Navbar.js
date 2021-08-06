@@ -18,7 +18,7 @@ const AppNavbar = () => {
         <Container className="navbar">
           <Button className = 'bored'>I'm Bored</Button>
           <Navbar.Brand as={Link} to='/'>
-            For Your Entertainment
+            Movie Mania
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="navbarScroll" />
           <Navbar.Collapse id="navbarScroll">
@@ -29,24 +29,6 @@ const AppNavbar = () => {
             >
               <Nav.Link href="/">Home</Nav.Link>
               <Nav.Link href="movies">Movies</Nav.Link>
-              <Nav.Link href="tvshows"> Tv Shows </Nav.Link>
-              <Nav.Link href="watched">Watched</Nav.Link>
-              <Nav.Link href="wishlist">Wishlist</Nav.Link>
-              <NavDropdown title="Genre" id="navbarScrollingDropdown">
-                <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
-                <NavDropdown.Item href="#action4">Adventure</NavDropdown.Item>
-                <NavDropdown.Item href="#action3">Comedy</NavDropdown.Item>
-                <NavDropdown.Item href="#action4">Fantsy</NavDropdown.Item>
-                <NavDropdown.Item href="#action3">Sci-Fiction</NavDropdown.Item>
-                <NavDropdown.Item href="#action4">Romance</NavDropdown.Item>
-                <NavDropdown.Item href="#action4">Crime/Mystery</NavDropdown.Item>
-                <NavDropdown.Item href="#action3">Horror</NavDropdown.Item>
-                <NavDropdown.Item href="#action4">Thriller</NavDropdown.Item>
-                <NavDropdown.Item href="#action4">Western</NavDropdown.Item>
-                <NavDropdown.Item href="#action4">Animation</NavDropdown.Item>
-                <NavDropdown.Divider />
-                <NavDropdown.Item href="#action5">I am Bored</NavDropdown.Item>
-              </NavDropdown>
             
               {Auth.loggedIn() ? (
                 <>
