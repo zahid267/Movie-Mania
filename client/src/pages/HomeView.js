@@ -4,7 +4,8 @@ import '../css/homeview.css'
 
 const HomeView = () => {
   return (
-    <Carousel className="viewed-imgs">
+   
+    <Carousel fluid className="viewed-imgs">
       <Carousel.Item interval={2000}>
         <a href="https://www.pexels.com">
           <img src="https://images.pexels.com/photos/2014422/pexels-photo-2014422.jpeg?auto=compress&cs=tinysrgb&dpr=1&fit=crop&h=100&w=2000" />
@@ -35,6 +36,7 @@ const HomeView = () => {
         </a>
       </Carousel.Item>
     </Carousel>
+    
   );
 };
 
