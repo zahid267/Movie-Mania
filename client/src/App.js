@@ -20,7 +20,7 @@ import ShowsView from './pages/ShowsView';
 import Dashboard from './pages/Dashboard';
 
 import SearchesPage from './pages/SearchesPage';
-import BottomNav from './components/BottomNav';
+// import BottomNav from './components/BottomNav';
 import Watched from './pages/Watched';
 import Wishlist from './pages/Wishlist';
 
@@ -89,7 +89,7 @@ function App() {
         </Switch>
 
         
-        <BottomNav/>
+        {/* <BottomNav/> */}
     </Router>
     </ApolloProvider>
   );

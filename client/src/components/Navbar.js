@@ -11,14 +11,21 @@ import Auth from '../utils/auth';
 const AppNavbar = () => {
   // set modal display state
   const [showModal, setShowModal] = useState(false);
+  // auto=compress&cs=tinysrgb&h=350
 
   return (
     <>
       <Navbar bg="light" expand="lg">
-        <Container className="navbar">
-          <Button className = 'bored'>I'm Bored</Button>
+        <Container className="navbar" style={{  
+  backgroundImage: "url(" + "https://www.pexels.com/photo/person-walking-between-green-forest-trees-15286/" + ")",
+  backgroundPosition: 'center',
+  backgroundSize: 'cover',
+  backgroundRepeat: 'no-repeat'
+}} >
+          {/* <Button className = 'bored'>I'm Bored</Button> */}
+    
           <Navbar.Brand as={Link} to='/'>
-            For Your Entertainment
+          <h6 style= {{color:'yellowgreen'}}> Welcome to Moviemania: The home of entertainments </h6>
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="navbarScroll" />
           <Navbar.Collapse id="navbarScroll">
@@ -27,13 +34,13 @@ const AppNavbar = () => {
               style={{ maxHeight: '100px' }}
               navbarScroll
             >
-              <Nav.Link href="/">Home</Nav.Link>
-              <Nav.Link href="movies">Movies</Nav.Link>
-              <Nav.Link href="tvshows"> Tv Shows </Nav.Link>
-              <Nav.Link href="watched">Watched</Nav.Link>
-              <Nav.Link href="wishlist">Wishlist</Nav.Link>
-              <NavDropdown title="Genre" id="navbarScrollingDropdown">
-                <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
+              <Nav.Link href="/" style= {{color:'yellowgreen'}}>Home</Nav.Link>
+              <Nav.Link href="movies" style= {{color:'yellowgreen'}}>Movies</Nav.Link>
+              {/* <Nav.Link href="tvshows"> Tv Shows </Nav.Link> */}
+              <Nav.Link href="watched" style= {{color:'yellowgreen'}}>Watched</Nav.Link>
+              <Nav.Link href="wishlist" style= {{color:'yellowgreen'}}>Wishlist</Nav.Link>
+              {/* <NavDropdown title="Genre" id="navbarScrollingDropdown"> */}
+                {/* <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
                 <NavDropdown.Item href="#action4">Adventure</NavDropdown.Item>
                 <NavDropdown.Item href="#action3">Comedy</NavDropdown.Item>
                 <NavDropdown.Item href="#action4">Fantsy</NavDropdown.Item>
@@ -43,20 +50,20 @@ const AppNavbar = () => {
                 <NavDropdown.Item href="#action3">Horror</NavDropdown.Item>
                 <NavDropdown.Item href="#action4">Thriller</NavDropdown.Item>
                 <NavDropdown.Item href="#action4">Western</NavDropdown.Item>
-                <NavDropdown.Item href="#action4">Animation</NavDropdown.Item>
+                <NavDropdown.Item href="#action4">Animation</NavDropdown.Item> */}
                 <NavDropdown.Divider />
-                <NavDropdown.Item href="#action5">I am Bored</NavDropdown.Item>
-              </NavDropdown>
+        
+              {/* </NavDropdown> */}
             
               {Auth.loggedIn() ? (
                 <>
                   
-              <Nav.Link href="/saved">My Movies</Nav.Link>
+              <Nav.Link href="/saved" style= {{color:'yellowgreen'}}>My Movies</Nav.Link>
 
                   <Nav.Link onClick={Auth.logout}>Logout</Nav.Link>
                 </>
               ) : (
-                <Nav.Link onClick={() => setShowModal(true)}>Login/Sign Up</Nav.Link>
+                <Nav.Link onClick={() => setShowModal(true)} style= {{color:'yellowgreen'}}>Login/Sign Up</Nav.Link>
               )}
             </Nav>
             <Form className="d-flex">
