@@ -1,26 +1,18 @@
 import React, { useState } from 'react';
 import { Form, Button, Alert } from 'react-bootstrap';
-import '../css/userlogin.css';
-//import { createUser } from '../utils/API';
-/// new line
 import { useMutation } from '@apollo/client';
-// Import the GraphQL mutation
+import '../css/userlogin.css';
 import { ADD_USER } from '../utils/mutations';
-// new line end
-
 import Auth from '../utils/auth';
 
-const SignupForm = () => {
+const SignUpForm = () => {
   // set initial form state
   const [userFormData, setUserFormData] = useState({ username: '', email: '', password: '' });
   // set state for form validation
   const [validated] = useState(false);
   // set state for alert
   const [showAlert, setShowAlert] = useState(false);
-  // new lines
-  // Invoke `useMutation()` hook to return a Promise-based function and data about the ADD_PROFILE mutation
   const [addUser] = useMutation(ADD_USER);
-  // new line end
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -37,18 +29,17 @@ const SignupForm = () => {
       event.stopPropagation();
     }
 
-    console.log(userFormData);
-   
-
     try {
       const { data } = await addUser({
         variables: { ...userFormData },
       });
+      console.log(data);
+      if (data.addUser.token) {
+        Auth.login(data.addUser.token);
+      }
       
-      console.log("here");
-
-      Auth.login(data.addUser.token);
-    } catch (err) {
+    } 
+    catch (err) {
       console.error(err);
       setShowAlert(true);
     }
@@ -117,4 +108,4 @@ const SignupForm = () => {
   );
 };
 
-export default SignupForm;
+export default SignUpForm;

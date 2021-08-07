@@ -1,51 +1,50 @@
 const { gql } = require('apollo-server-express');
 
 const typeDefs = gql`
-  type User {
-    _id: ID
-    username: String
-    email: String
-    movieCount: Int
-    savedMovies: [Movie]
-  }
+    type User {
+        _id: ID
+        username: String!
+        email: String!
+        password: String!
+        movieCount: Int
+        savedMovies: [Movie]
+    }
 
-  type Auth {
-    token: ID!
-    user: User
-  }
+    type Movie {
+        movieId: ID
+        year: [Int]
+        description: String
+        image: String
+        link: String
+        title: String
+    }
 
-  input MovieInput {
-    movieId: String!
-    type: String
-    title: String!
-    image: String
-    year: String!
-    
-  }
-  
-  type Movie {
-    movieId : String!
-    type: String
-    title : String!
-    image : String
-    year : String
-    watched: Boolean
-  }
+    input MovieInput {
+        year: [String]
+        description: String
+        title: String
+        movieId: ID
+        image: String
+        link: String
+    }
 
-  type Query {
-    users: [User]
-    user(_id: ID!): User
-    # Because we have the context functionality in place to check a JWT and decode its data, we can use a query that will always find and return the logged in user's data
-    myMovies: User
-  }
+    type  Query {
+        users: [User]
+        user(username: String!): User
+        me: User
+    }
 
-  type Mutation {
-    addUser(username: String!, email: String!, password: String!): Auth
-    loginUser(email: String!, password: String!): Auth
-    saveMovie(movieData: MovieInput!): User
-    removeMovie(movieId: ID!): User
-    watchedMovie(movieId: ID!): User
-  }
+    type Mutation{
+        login(email: String!, password: String!): Auth
+        addUser(username: String!, email: String!, password: String!): Auth
+        saveMovie(movieData: MovieInput!): User
+        removeMovie(movieId: ID!): User
+    }
+
+    type Auth {
+        token: String!
+        user: User
+    }
 `;
 
 module.exports = typeDefs;

@@ -13,7 +13,7 @@ export const getMe = (token) => {
   });
 };
 
-export const createUser = (userData) => {
+export const addUser = (userData) => {
   return fetch('/api/users', {
     method: 'POST',
     headers: {
@@ -46,7 +46,7 @@ export const saveMovie = (movieData, token) => {
 };
 
 // remove saved movie data for a logged in user
-export const deleteBook = (movieId, token) => {
+export const deleteMovie = (movieId, token) => {
   return fetch(`/api/users/movies/${movieId}`, {
     method: 'DELETE',
     headers: {
@@ -55,6 +55,25 @@ export const deleteBook = (movieId, token) => {
   });
 };
 
+// make a search to google books api
+// https://www.googleapis.com/books/v1/volumes?q=harry+potter
+/*export const searchGoogleBooks = (query) => {
+  return fetch(`https://www.googleapis.com/books/v1/volumes?q=${query}`);
+};
+/*
+export const searchMovies = (query) => {
+ages,Genres&StringDistance=0&Title='+query, {
+
+  return fetch('https://ivaee-internet-video-archive-entertainment-v1.p.rapidapi.com/entertainment/search/?ProgramTypes=Movie&Includes=Descriptions,Images,Genres&Title='+query, {
+ main
+      'method': 'GET',
+      'headers': {
+        'content-type': 'application/json',
+        'x-rapidapi-key': '36cdf6872fmsh4c920891e55aecdp1d76fdjsn61241435d1ec',
+        'x-rapidapi-host': 'ivaee-internet-video-archive-entertainment-v1.p.rapidapi.com'
+      }
+    });
+};
 
 export const searchMovies = (query) => {
  // return axios.get(`${BASEURLSTRING}${query}`);
