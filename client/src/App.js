@@ -8,7 +8,7 @@ import {
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 // new lines end
-
+//import './App.css';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import SearchMovies from './pages/SearchMovies';
 import MovieDetail from './pages/MovieDetail';
@@ -55,7 +55,7 @@ function App() {
     <ApolloProvider client={client}>
     <Router>
         <Navbar />
-       <HomeView/>
+       {/* <HomeView/> */}
        
         <Switch>
 

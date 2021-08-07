@@ -26,9 +26,9 @@ const AppNavbar = () => {
     
           <Navbar.Brand as={Link} to='/'>
 
-          <h6 style= {{color:'yellowgreen'}}> Welcome to Moviemania: The home of entertainments </h6>
+          <h6 style= {{color:'#078080'}}> Welcome to Moviemania: The home of entertainments </h6>
 
-            Movie Mania
+            {/* Movie Mania */}
 
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="navbarScroll" />

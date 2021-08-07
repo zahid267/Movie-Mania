@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from "react-router-dom"; 
+import { Carousel } from 'react-bootstrap';
 
 import { Jumbotron, Container, Col, Form, Button, Card, CardColumns } from 'react-bootstrap';
 //var axios = require("axios").default;
@@ -123,8 +124,105 @@ const SearchMovies = () => {
 
   return (
     <>
-      <Jumbotron fluid className='text-light bg-info'>
-        <Container>
+      <div className="carousel-slide">
+        <Carousel className="viewed-imgs">
+          <Carousel.Item className="item">
+            <img
+              className="d-block w-100"
+              src="https://cdn.pixabay.com/photo/2016/11/15/07/09/photo-manipulation-1825450_1280.jpg"
+              alt="First slide"
+            />
+            <Container>
+              <Carousel.Caption className="caption">
+                <h1>Movie Mania</h1>
+                <p>Entertainment Unplugged...</p>
+              </Carousel.Caption>
+
+            </Container>
+
+          </Carousel.Item>
+
+          <Carousel.Item className="item">
+            <img
+              className="d-block w-100"
+              src="https://cdn.pixabay.com/photo/2016/04/14/13/06/landscape-1328858_1280.jpg"
+              alt="Second slide"
+            />
+
+            <Container>
+              <Carousel.Caption className="caption">
+                <h1>Movie Mania</h1>
+                <p>Rediscover entertainment in a new dimension</p>
+              </Carousel.Caption>
+            </Container>
+
+          </Carousel.Item>
+
+          <Carousel.Item className="item">
+            <img
+              className="d-block w-100"
+              src="https://cdn.pixabay.com/photo/2017/09/04/09/37/cinema-strip-2713352_1280.jpg"
+              alt="Third slide"
+            />
+
+            <Container>
+              <Carousel.Caption className="caption">
+                <h1>Movie Mania</h1>
+                <p>Entertainment at your doorstep</p>
+              </Carousel.Caption>
+            </Container>
+
+          </Carousel.Item>
+
+          <Carousel.Item className="item">
+            <img
+              className="d-block w-100"
+              src="https://cdn.pixabay.com/photo/2017/09/04/09/37/cinema-strip-2713352_1280.jpg"
+              alt="Fourth slide"
+            />
+
+            <Container>
+              <Carousel.Caption className="caption">
+                <h1>Movie Mania</h1>
+                <p>Entertainment at your doorstep</p>
+              </Carousel.Caption>
+            </Container>
+
+          </Carousel.Item>
+
+          <Container className="searchform">
+          <Form onSubmit={handleFormSubmit}>
+            <h3>{searchedMovies.length
+            ? `Viewing ${searchedMovies.length} results:`
+            : 'Search for a movie to begin...'}  
+            </h3>
+            <Form.Row>
+              <Col xs={12} md={8}>
+                <Form.Control
+                  name='searchInput'
+                  value={searchInput}
+                  onChange={(e) => setSearchInput(e.target.value)}
+                  type='text'
+                  size='lg'
+                  placeholder='Search for a movie'
+                />
+              </Col>
+              <Col xs={12} md={4}>
+                <Button type='submit' variant='info' size='lg'>
+                  Submit Search
+                </Button>
+              </Col>
+            </Form.Row>
+          </Form>
+        </Container>
+
+        </Carousel>
+        
+        
+      </div>
+      
+      {/* <Jumbotron fluid className='text-light bg-info'> */}
+        {/* <Container>
           <h1>Search for movies!</h1>
           <Form onSubmit={handleFormSubmit}>
             <Form.Row>
@@ -145,15 +243,16 @@ const SearchMovies = () => {
               </Col>
             </Form.Row>
           </Form>
-        </Container>
-      </Jumbotron>
+        </Container> */}
+      {/* </Jumbotron> */}
 
       <Container>
-        <h2>
+        {/* <h2>
           {searchedMovies.length
             ? `Viewing ${searchedMovies.length} results:`
             : 'Search for a movie to begin'}
-        </h2>
+        </h2> */}
+
         <CardColumns>
           {searchedMovies.map((movie) => {
             return (
