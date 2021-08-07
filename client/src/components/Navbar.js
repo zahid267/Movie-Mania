@@ -25,7 +25,11 @@ const AppNavbar = () => {
           {/* <Button className = 'bored'>I'm Bored</Button> */}
     
           <Navbar.Brand as={Link} to='/'>
+
           <h6 style= {{color:'yellowgreen'}}> Welcome to Moviemania: The home of entertainments </h6>
+
+            Movie Mania
+
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="navbarScroll" />
           <Navbar.Collapse id="navbarScroll">
@@ -34,6 +38,7 @@ const AppNavbar = () => {
               style={{ maxHeight: '100px' }}
               navbarScroll
             >
+
               <Nav.Link href="/" style= {{color:'yellowgreen'}}>Home</Nav.Link>
               <Nav.Link href="movies" style= {{color:'yellowgreen'}}>Movies</Nav.Link>
               {/* <Nav.Link href="tvshows"> Tv Shows </Nav.Link> */}
@@ -54,6 +59,10 @@ const AppNavbar = () => {
                 <NavDropdown.Divider />
         
               {/* </NavDropdown> */}
+
+              <Nav.Link href="/">Home</Nav.Link>
+              <Nav.Link href="movies">Movies</Nav.Link>
+
             
               {Auth.loggedIn() ? (
                 <>
