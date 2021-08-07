@@ -17,9 +17,9 @@ const SavedMovies = () => {
   const [watchedMovie] = useMutation(WATCHED_MOVIE);
 
   const { loading, data } = useQuery(GET_ME);
-  console.log(data)
-  const userData = data?.myMovies.savedMovies || []
-  console.log(userData);
+  //console.log(data)
+  var userData = data?.myMovies.savedMovies || []
+  //console.log(userData);
   // use this to determine if `useEffect()` hook needs to run again
   //const userDataLength = Object.keys(userData).length;
 
@@ -36,6 +36,7 @@ const SavedMovies = () => {
         variables: {movieId },token
       });
       const updatedUser = data?.data || [];
+      userData = updatedUser
      // setUserData(updatedUser);
       // upon success, remove movie's id from localStorage
       removeMovieId(movieId);
@@ -49,12 +50,14 @@ const SavedMovies = () => {
     if (!token) {
       return false;
     }
-
+    console.log(movieId);
     try {
       const { loading, data } = await watchedMovie({
         variables: {movieId },token
       });
       const updatedUser = data?.data || [];
+      userData = updatedUser
+      console.log(userData);
       //setUserData(updatedUser);
     } catch (err) {
       console.error(err);

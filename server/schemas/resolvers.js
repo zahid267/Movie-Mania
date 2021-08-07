@@ -71,7 +71,7 @@ const resolvers = {
       if (context.user) {
         return User.findOneAndUpdate(
           { _id: context.user._id },
-          { $set: { savedMovies: { movieId: movieId } } },{watched : true},
+          { $set: { savedMovies: { movieId: movieId } }},{watched : true},
             
           { new: true }
         );
