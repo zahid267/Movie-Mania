@@ -35,4 +35,9 @@
 * Deployed To heroku 
 * Made use of MangoDB and the Mongoose ODM for the database 
 
-#### Link to deployed application: https://afternoon-fjord-07743.herokuapp.com/
+#### Link to Git Repository : https://github.com/zahid267/Movie-Mania
+
+#### Link to deployed application: https://hidden-lake-94798.herokuapp.com/
+
+
+****** Developed by Muhammad Zahid
