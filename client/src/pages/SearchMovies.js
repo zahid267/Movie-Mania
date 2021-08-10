@@ -78,7 +78,7 @@ const SearchMovies = () => {
       //production : movie.Production
     }));
 
-   console.log(movieData)
+  // console.log(movieData)
 
 //return false;
 

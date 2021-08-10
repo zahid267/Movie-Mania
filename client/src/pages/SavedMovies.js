@@ -17,9 +17,9 @@ const SavedMovies = () => {
   const [watchedMovie] = useMutation(WATCHED_MOVIE);
 
   const { loading, data } = useQuery(GET_ME);
-  console.log(data)
-  const userData = data?.myMovies.savedMovies || []
-  console.log(userData);
+  //console.log(data)
+  var userData = data?.myMovies.savedMovies || []
+ // console.log(userData);
   // use this to determine if `useEffect()` hook needs to run again
   //const userDataLength = Object.keys(userData).length;
 
@@ -35,7 +35,7 @@ const SavedMovies = () => {
       const { loading, data } = await removeMovie({
         variables: {movieId },token
       });
-      const updatedUser = data?.data || [];
+      userData = data?.data || [];
      // setUserData(updatedUser);
       // upon success, remove movie's id from localStorage
       removeMovieId(movieId);
@@ -43,18 +43,17 @@ const SavedMovies = () => {
       console.error(err);
     }
   };
-  const handleWatchedMovie = async (movieId) => {
+  const setWatchedMovie = async (movieId) => {
     const token = Auth.loggedIn() ? Auth.getToken() : null;
-
     if (!token) {
       return false;
     }
-
+    
     try {
       const { loading, data } = await watchedMovie({
         variables: {movieId },token
       });
-      const updatedUser = data?.data || [];
+     userData = data?.data || [];
       //setUserData(updatedUser);
     } catch (err) {
       console.error(err);
@@ -91,7 +90,7 @@ const SavedMovies = () => {
                   <Button className='btn-block btn-danger' onClick={() => handleDeleteMovie(movie.movieId)}>
                     Delete this Movie!
                   </Button>
-                  <Button className='btn-block btn-danger' onClick={() => handleWatchedMovie(movie.movieId)}>
+                  <Button className='btn-block btn-danger' onClick={() => setWatchedMovie(movie.movieId)}>
                   {movie.watched && movie.watched === true
                     ? 'This movie has been marked as watched!'
                     : 'Mark as Watched!'}

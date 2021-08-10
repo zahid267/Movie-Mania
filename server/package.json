@@ -1,6 +1,6 @@
 {
   "name": "server",
-  "version": "1.0.0",
+  "version": "",
   "description": "",
   "main": "server.js",
   "scripts": {
@@ -8,7 +8,7 @@
     "watch": "nodemon server.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "Muhammad Zahid",
   "license": "ISC",
   "dependencies": {
     "apollo-server-express": "^2.15.0",

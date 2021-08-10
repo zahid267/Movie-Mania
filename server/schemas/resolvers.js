@@ -69,10 +69,10 @@ const resolvers = {
     // Make it so a logged in user can only mark a movie as watched from their own saveMovies
     watchedMovie: async (parent, { movieId }, context) => {
       if (context.user) {
+       // console.log("in resolver - id : " + movieId);
         return User.findOneAndUpdate(
           { _id: context.user._id },
-          { $set: { savedMovies: { movieId: movieId } } },{watched : true},
-            
+          { $set: { savedMovies: { movieId: movieId } } },{watched : true},  
           { new: true }
         );
       }
